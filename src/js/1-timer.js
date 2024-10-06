@@ -41,11 +41,10 @@ const options = {
       }
     } else {
       iziToast.error({
-        message: 'Please choose a date in the future',
+        message: '❌ Please choose a date in the future',
         messageSize: 18,
         messageLineHeight: 50,
         position: 'topRight',
-        image: '../img/c6bda598730bfa22fbc6be82bd8c28f5.png',
         icon: '',
       });
     }
