@@ -27,7 +27,21 @@ form.addEventListener('submit', event => {
 
   form.reset();
   if (userData.value && userData.delay) {
-    fetchUserServer(userData).then().catch();
+    fetchUserServer(userData)
+      .then(delay =>
+        iziToast.show({
+          message: `✅ Fulfilled promise in ${delay}ms`,
+          position: 'topRight',
+          color: 'green',
+        })
+      )
+      .catch(delay => {
+        iziToast.show({
+          message: `❌ Rejected promise in ${delay}ms`,
+          position: 'topRight',
+          color: 'red',
+        });
+      });
   }
 });
 
@@ -35,21 +49,9 @@ const fetchUserServer = ({ value, delay }) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (value === 'fulfilled') {
-        resolve(
-          `${iziToast.show({
-            message: `✅ Fulfilled promise in ${delay}ms`,
-            position: 'topRight',
-            color: 'green',
-          })}`
-        );
+        resolve(delay);
       } else {
-        reject(
-          `${iziToast.show({
-            message: `❌ Rejected promise in ${delay}ms`,
-            position: 'topRight',
-            color: 'red',
-          })}`
-        );
+        reject(delay);
       }
     }, delay);
   });

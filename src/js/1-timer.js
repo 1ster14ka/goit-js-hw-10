@@ -58,6 +58,8 @@ btn.addEventListener('click', () => {
     clearInterval(intervalId);
     num = 0;
   }
+
+  input.disabled = true;
   intervalId = setInterval(() => timer(), 1000);
   btn.disabled = true;
 });
@@ -85,6 +87,7 @@ function timer() {
   if (ms <= 0) {
     clearInterval(intervalId);
     num = 0;
+    input.disabled = false;
     return;
   }
 
